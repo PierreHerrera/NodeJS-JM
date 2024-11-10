@@ -1,0 +1,24 @@
+{
+  "name": "03_npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "express": "^4.19.2",
+    "react": "^18.2.0",
+    "responsimple": "^1.0.1",
+    "vue": "^3.4.25"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "sass": "^1.75.0",
+    "serve": "^14.2.1"
+  }
+}
