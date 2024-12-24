@@ -1,10 +1,13 @@
 import express from "express";
+import session from "express-session";
 import path from "path";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import error from "./middlewares/error.js";
 import routesTasks from "./routes/rTask.js";
+import routesUsers from "./routes/rUser.js";
+import { isAuthenticated } from "./middlewares/auth.js";
 
 // const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const __dirname = path.resolve(path.dirname(decodeURI(new URL(import.meta.url).pathname).substring(1)));
@@ -22,10 +25,18 @@ app.set("view engine", "pug");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
+app.use(
+    session({
+        secret: "mi_secreto",
+        resave: true,
+        saveUninitialized: true,
+    })
+);
 
-app.use(routesTasks);
+app.use(routesUsers);
+app.use(isAuthenticated, routesTasks);
 app.use(error.e404);
 console.log("__dirname:", __dirname);
 
